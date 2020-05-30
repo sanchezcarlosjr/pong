@@ -1,0 +1,48 @@
+# Project: pong
+# Makefile created by Dev-C++ 5.11
+
+CPP      = g++.exe -D__DEBUG__
+CC       = gcc.exe -D__DEBUG__
+WINDRES  = windres.exe
+RES      = make/pong_private.res
+OBJ      = make/miniwin.o make/main.o make/ball.o make/game.o make/bar.o make/computer.o $(RES)
+LINKOBJ  = make/miniwin.o make/main.o make/ball.o make/game.o make/bar.o make/computer.o $(RES)
+LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib" -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc -mwindows -g3
+INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
+CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
+BIN      = bin/pong.exe
+CXXFLAGS = $(CXXINCS) -g3
+CFLAGS   = $(INCS) -g3
+RM       = rm.exe -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+make/miniwin.o: src/miniwin.cpp
+	$(CPP) -c src/miniwin.cpp -o make/miniwin.o $(CXXFLAGS)
+
+make/main.o: src/main.cpp
+	$(CPP) -c src/main.cpp -o make/main.o $(CXXFLAGS)
+
+make/ball.o: src/ball.cpp
+	$(CPP) -c src/ball.cpp -o make/ball.o $(CXXFLAGS)
+
+make/game.o: src/game.cpp
+	$(CPP) -c src/game.cpp -o make/game.o $(CXXFLAGS)
+
+make/bar.o: src/bar.cpp
+	$(CPP) -c src/bar.cpp -o make/bar.o $(CXXFLAGS)
+
+make/computer.o: src/computer.cpp
+	$(CPP) -c src/computer.cpp -o make/computer.o $(CXXFLAGS)
+
+make/pong_private.res: pong_private.rc 
+	$(WINDRES) -i pong_private.rc --input-format=rc -o make/pong_private.res -O coff 
+
