@@ -1,4 +1,4 @@
 # Pong
 
 ## Demo
-![demo](Screenshot from 2022-02-04 18-28-14.png)
+![demo](Screenshot%20from%202022-02-04%2018-28-14.png)
